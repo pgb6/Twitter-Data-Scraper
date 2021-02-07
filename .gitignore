@@ -1,4 +1,5 @@
 # Byte-compiled / optimized / DLL files
+/Twitter-Data-Scraper/Desktop/hidden.py
 __pycache__/
 *.py[cod]
 *$py.class
