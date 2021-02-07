@@ -1,3 +1,8 @@
+# Twitter Data Scraper
+This python file serves as a command line script that will allow the user to
+store a users' most recent 100 tweets into an NDJSON file. It can also search
+the first 100 tweets with a specified hashtag and display associated distinct hashtags as
+well as the count of each distinct hashtag. This script is useful for identifying and analyzing trends on Twitter through tweets and hashtags.
 # Approach
 This code was designed to be scalable and reusable, such that simple changes to the variables in the code would allow the functions to search a different users tweets, or a different hashtag.
 I took the liberty to provide the user with a docker build environment so that running the code would be less painful! However, if they do not want to use Docker, they can proceed to the boring way of
@@ -32,7 +37,7 @@ The '-h' arg is for listing the available args as well as what their purposes ar
 ## Using Docker
 Make sure Docker is installed on your system!
 https://docs.docker.com/get-docker/
-1. Navigate to the Docker folder (provided with this README) in the command line 
+1. Navigate to the Docker folder in the command line 
 2. Build the docker image with: 
 	```bash
 	docker build -t <desired image name>
@@ -56,7 +61,7 @@ https://docs.docker.com/get-docker/
 4. Explore the logs folder accordingly
 
 # Next Steps:
-With more time, I would have loved to implement these steps:
 1. Create unit tests with a more generic script
-2. Explore possiblity of running functions in parallel since they are independent of eachother
+2. Explore possiblity of automating this process by adding the dockerfile to AWS ECR and running it on a daily basis. Store the output contents in an S3.
+3. Explore possiblity of running functions in parallel since they are independent of eachother
 
