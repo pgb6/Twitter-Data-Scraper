@@ -14,4 +14,4 @@ RUN pip install -r requirements.txt
 COPY src/ .
 
 #run container as entrypoint to allow cmd args
-#ENTRYPOINT ["python","./twitterSearch.py"]
+ENTRYPOINT ["python","./twitterSearch.py"]
