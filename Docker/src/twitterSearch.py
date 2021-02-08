@@ -1,7 +1,7 @@
 """
 This python file serves as a command line script that will allow the user to
-store Realself's most recent 100 tweets into an NDJSON file. It can also search
-the first 100 tweets with '#seattle' and display associated distinct hashtags as
+store a users' most recent 100 tweets into an NDJSON file. It can also search
+the first 100 tweets with a specified hashtag and display associated distinct hashtags as
 well as the count of each distinct hashtag. For information on how to run this
 script, please refer to the README.txt
 """
