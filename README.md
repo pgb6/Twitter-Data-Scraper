@@ -31,7 +31,7 @@ This script uses argparse to allow the user to specify which function they would
 The '-t' arg will use Twitter's user_timeline API to output a JSON file of a users' 100 recent tweets to the 'logs' folder.
 
 The '-H' arg (uppercase!) arg will search a hashtags first 100 tweets and print a dataframe of distinct hashtags and their 
-occurences. This argument also outputs a CSV filed to the 'logs' folder.
+occurences. This argument also outputs a CSV file to the 'logs' folder.
 
 The '-h' arg is for listing the available args as well as what their purposes are.
 ## Using Docker
@@ -61,7 +61,7 @@ https://docs.docker.com/get-docker/
 4. Explore the logs folder accordingly
 
 # Next Steps:
-1. Create unit tests with a more generic script
+1. Create unit tests
 2. Explore possiblity of automating this process by adding the dockerfile to AWS ECR and running it on a daily basis. Store the output contents in an S3.
 3. Explore possiblity of running functions in parallel since they are independent of eachother
 
