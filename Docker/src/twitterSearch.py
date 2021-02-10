@@ -49,7 +49,7 @@ class TwitterSearch():
         numTweets = 100
         #make an integer default dict of hashtag:occurences, this way any new hashtags will have a default of 0 occurences
         distinct_hashtags = collections.defaultdict(int)
-        #iterate through 100 tweets with the hashtag #Seattle and make the distinct_hashtag dictionary
+        #iterate through 100 tweets with the specified hashtag and make the distinct_hashtag dictionary
         for tweet in tweepy.Cursor(client.search, q=search_hashtag, tweet_mode='extended').items(numTweets):
                 data = tweet._json['entities']['hashtags']
 
