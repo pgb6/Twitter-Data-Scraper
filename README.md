@@ -27,6 +27,7 @@ running the code, which is through the Windows/Linux command-line.
 
 # Running the Script
 REQUIRES PYTHON >= 3.9
+
 This script uses argparse to allow the user to specify which function they would like to run. Users simply add the following args (excluding -h) to the script to call a function. Users may list both args, or either arg.
 
 The '-t' arg will use Twitter's user_timeline API to output a JSON file of a users' 100 recent tweets to the 'logs' folder.
