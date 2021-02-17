@@ -16,6 +16,18 @@ import os
 
 
 class TwitterSearch():
+    #get command line args
+    def get_args(self):
+        # use argparse parser for command line input
+        parser = argparse.ArgumentParser(description='Choose which Twitter search(es) to conduct')
+        parser.add_argument('-t', '--timeline', type=str,
+                            help='Stores the users 100 most recent tweets into a newline-delimited JSON file in CWD. Specify user after flag.')
+        parser.add_argument('-H', '--hashtag', type=str,
+                            help='Prints dataframe of hashtags and their occurences found in the first 100 results of a Twitter Hashtag search. Also prints dataframe to csv file in CWD. Specify desired hashtag after flag.')
+
+        args = parser.parse_args()
+        return args
+
     #make logs_folder
     def logs_folder(self):
         return os.getcwd()+'/logs/'
@@ -49,7 +61,7 @@ class TwitterSearch():
         numTweets = 100
         #make an integer default dict of hashtag:occurences, this way any new hashtags will have a default of 0 occurences
         distinct_hashtags = collections.defaultdict(int)
-        #iterate through 100 tweets with the specified hashtag and make the distinct_hashtag dictionary
+        #iterate through 100 tweets with the hashtag and make the distinct_hashtag dictionary
         for tweet in tweepy.Cursor(client.search, q=search_hashtag, tweet_mode='extended').items(numTweets):
                 data = tweet._json['entities']['hashtags']
 
@@ -69,13 +81,8 @@ class TwitterSearch():
 
 
 if __name__ == '__main__':
-    #use argparse parser for command line input
-    parser = argparse.ArgumentParser(description='Choose which Twitter search(es) to conduct')
-    parser.add_argument('-t', '--timeline', type=str, help='Stores the users 100 most recent tweets into a newline-delimited JSON file in CWD. Specify user after flag.')
-    parser.add_argument('-H','--hashtag', type=str, help='Prints dataframe of hashtags and their occurences found in the first 100 results of a Twitter Hashtag search. Also prints dataframe to csv file in CWD. Specify desired hashtag after flag.')
-
-    args = parser.parse_args()
     api = TwitterSearch()
+    args = api.get_args()
 
     #check if any argument(s) present on command line, if its present, run the associated function!
     if args.timeline:
