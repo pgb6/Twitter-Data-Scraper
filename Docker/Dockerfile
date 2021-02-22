@@ -10,6 +10,12 @@ COPY requirements.txt .
 #install dependencies
 RUN pip install -r requirements.txt
 
+RUN mkdir -p /logs
+
+RUN chown newuser /logs
+
+USER newuser
+
 #copy content of local src directory to working directory
 COPY src/ .
 
