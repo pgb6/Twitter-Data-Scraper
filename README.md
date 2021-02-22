@@ -26,7 +26,6 @@ running the code, which is through the Windows/Linux command-line.
 ```
 
 # Running the Script
-REQUIRES PYTHON >= 3.9
 
 This script uses argparse to allow the user to specify which function they would like to run. Users simply add the following args (excluding -h) to the script to call a function. Users may list both args, or either arg.
 
@@ -51,6 +50,8 @@ https://docs.docker.com/get-docker/
 4. Explore the created logs folder accordingly
 
 ## Using Windows/Linux
+REQUIRES PYTHON >= 3.9
+
 1. Navigate to the Desktop folder (provided with this README) in the command line
 2. Install the scripts' dependencies like so:
 	```bash
