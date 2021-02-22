@@ -41,7 +41,7 @@ https://docs.docker.com/get-docker/
 1. Navigate to the Docker folder in the command line 
 2. Build the docker image with: 
 	```bash
-	docker build -t <desired image name>
+	docker build -t <desired image name> .
 	```
 3. Run the docker image you created using the following command, using whichever arguments are desired:
 	```bash
