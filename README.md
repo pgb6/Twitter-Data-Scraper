@@ -65,6 +65,6 @@ REQUIRES PYTHON >= 3.9
 
 # Next Steps:
 1. Create unit tests
-2. Explore possiblity of automating this process by adding the dockerfile to AWS ECR and running it on a daily basis. Store the output contents in an S3.
+2. Explore possiblity of automating this process by adding the docker image to AWS ECR and running it on a daily basis. Store the output contents in an S3.
 3. Explore possiblity of running functions in parallel since they are independent of eachother
 
