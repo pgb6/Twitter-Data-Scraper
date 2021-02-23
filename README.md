@@ -45,7 +45,7 @@ https://docs.docker.com/get-docker/
 	```
 3. Run the docker image you created using the following command, using whichever arguments are desired:
 	```bash
-	docker run -it --rm -v ${PWD}/logs:/logs <image name> <arg> <arg>
+	docker run -it --rm -v ${PWD}/logs:/code/logs <image name> <arg> <arg>
 	```
 4. Explore the created logs folder accordingly
 
