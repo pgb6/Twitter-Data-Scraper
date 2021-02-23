@@ -10,14 +10,14 @@ COPY requirements.txt .
 #install dependencies
 RUN pip install -r requirements.txt
 
-RUN mkdir -p /logs
-
-RUN chown newuser /logs
-
-USER newuser
-
 #copy content of local src directory to working directory
 COPY src/ .
+
+#make a logs dir for the script to write to
+RUN mkdir ./logs
+
+#give logs dir permissions
+RUN chmod 777 ./logs 
 
 #run container as entrypoint to allow cmd args
 ENTRYPOINT ["python","./twitterSearch.py"]
