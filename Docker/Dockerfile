@@ -17,7 +17,7 @@ COPY src/ .
 RUN mkdir ./logs
 
 #give logs dir permissions
-RUN chmod 777 ./logs 
+RUN chmod 755 ./logs 
 
 #run container as entrypoint to allow cmd args
 ENTRYPOINT ["python","./twitterSearch.py"]
