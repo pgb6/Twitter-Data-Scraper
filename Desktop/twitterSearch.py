@@ -13,12 +13,12 @@ import sys
 import pandas as pd
 import collections
 import os
-
+import time
 
 class TwitterSearch():
     def get_args(self):
         """get command line args"""
-        
+
         parser = argparse.ArgumentParser(description='Choose which Twitter search(es) to conduct')
         parser.add_argument('-t', '--timeline', type=str,
                             help='Stores the users 100 most recent tweets into a newline-delimited JSON file in CWD. Specify user after flag.')
@@ -27,6 +27,12 @@ class TwitterSearch():
 
         args = parser.parse_args()
         return args
+
+    def get_timestamp(self):
+        """get timestamp for output file distinction"""
+
+        timestamp = time.strftime("%Y%m%d-%H%M%S")
+        return timestamp
 
     def logs_folder(self):
         """make logs_folder"""
@@ -51,7 +57,7 @@ class TwitterSearch():
         numTweets = 100
         newline = ''
         #write each tweet and its data into a newline-delimited json formatted file
-        with open(self.logs_folder()+'data.json','w+', encoding='utf-8') as out:
+        with open(self.logs_folder()+f'{user}_tweets_{self.get_timestamp()}.json','w+', encoding='utf-8') as out:
             for tweet in tweepy.Cursor(API.user_timeline, screen_name=user, tweet_mode='extended').items(numTweets):
                 data = json.dumps(tweet._json,ensure_ascii=False)
                 out.write(newline)
@@ -80,13 +86,13 @@ class TwitterSearch():
         #disable max_rows limit so that the df output is not shorted with ellipsis
         pd.set_option('display.max_rows',None)
         #convert df to csv file, allowing non-Latin hashtags to be seen and analyzed
-        if not os.path.exists(self.logs_folder()+'hashtag_df.csv'):
-            with open(self.logs_folder()+'hashtag_df.csv', 'w+'): pass
-        hashtag_df.to_csv(self.logs_folder()+'hashtag_df.csv',encoding='utf-8-sig', index=False)
+        if not os.path.exists(self.logs_folder()+f'{hashtag}_hashtag_{self.get_timestamp()}.csv'):
+            with open(self.logs_folder()+f'{hashtag}_hashtag_{self.get_timestamp()}.csv', 'w+'): pass
+        hashtag_df.to_csv(self.logs_folder()+f'{hashtag}_hashtag_{self.get_timestamp()}.csv',encoding='utf-8-sig', index=False)
         print(hashtag_df.to_string(index=False))
     def main(self):
         """main function"""
-        
+
         args = self.get_args()
         # check if any argument(s) present on command line, if its present, run the associated function!
         if args.timeline:
