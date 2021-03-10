@@ -16,9 +16,9 @@ import os
 
 
 class TwitterSearch():
-    #get command line args
     def get_args(self):
-        # use argparse parser for command line input
+        """get command line args"""
+        
         parser = argparse.ArgumentParser(description='Choose which Twitter search(es) to conduct')
         parser.add_argument('-t', '--timeline', type=str,
                             help='Stores the users 100 most recent tweets into a newline-delimited JSON file in CWD. Specify user after flag.')
@@ -28,24 +28,29 @@ class TwitterSearch():
         args = parser.parse_args()
         return args
 
-    #make logs_folder
     def logs_folder(self):
-        return os.getcwd()+'/logs/'
+        """make logs_folder"""
 
-    #authenticate
+        path = os.getcwd()+'/logs/'
+        if not os.path.exists(path):
+            os.mkdir(os.getcwd()+'/logs/')
+        return path
+
     def API(self):
+        """authenticate with keys"""
+
         auth = hidden.oauth()
         API = tweepy.API(auth, wait_on_rate_limit=True)
 
         return API
 
-    #Write newline-delimited json of users last 100 tweets
     def user_timeline(self,user):
+        """Write newline-delimited json of users last 100 tweets"""
+
         API = self.API()
         numTweets = 100
         newline = ''
-
-    #write each tweet and its data into a newline-delimited json formatted file
+        #write each tweet and its data into a newline-delimited json formatted file
         with open(self.logs_folder()+'data.json','w+', encoding='utf-8') as out:
             for tweet in tweepy.Cursor(API.user_timeline, screen_name=user, tweet_mode='extended').items(numTweets):
                 data = json.dumps(tweet._json,ensure_ascii=False)
@@ -53,13 +58,14 @@ class TwitterSearch():
                 out.write(data)
                 newline = '\n'
 
-    #Print hashtags and the number of their occurences in the first 100 tweets with specified hashtag
+
     def search_hashtag(self, hashtag):
+        """Print hashtags and the number of their occurences in the first 100 tweets with specified hashtag"""
+
         #filter out retweets in our search, ref: https://developer.twitter.com/en/docs/twitter-api/v1/rules-and-filtering/search-operators
         search_hashtag = f'#{hashtag} -filter:retweets'
         client = self.API()
         numTweets = 100
-        #make an integer default dict of hashtag:occurences, this way any new hashtags will have a default of 0 occurences
         distinct_hashtags = collections.defaultdict(int)
         #iterate through 100 tweets with the hashtag and make the distinct_hashtag dictionary
         for tweet in tweepy.Cursor(client.search, q=search_hashtag, tweet_mode='extended').items(numTweets):
@@ -78,24 +84,27 @@ class TwitterSearch():
             with open(self.logs_folder()+'hashtag_df.csv', 'w+'): pass
         hashtag_df.to_csv(self.logs_folder()+'hashtag_df.csv',encoding='utf-8-sig', index=False)
         print(hashtag_df.to_string(index=False))
+    def main(self):
+        """main function"""
+        
+        args = self.get_args()
+        # check if any argument(s) present on command line, if its present, run the associated function!
+        if args.timeline:
+            try:
+                api.user_timeline(args.timeline)
+                print('JSON file made in logs folder!')
+            except tweepy.error.TweepError:
+                sys.exit('OAuth Failed!')
+        if args.hashtag:
+            try:
+                api.search_hashtag(args.hashtag)
+            except tweepy.error.TweepError:
+                sys.exit('OAuth Failed!')
 
+        if not args.timeline and not args.hashtag:
+            print('ERROR! Please read the README.md or use -h argument for help.')
 
 if __name__ == '__main__':
     api = TwitterSearch()
-    args = api.get_args()
+    api.main()
 
-    #check if any argument(s) present on command line, if its present, run the associated function!
-    if args.timeline:
-        try:
-            api.user_timeline(args.timeline)
-            print('JSON file made in logs folder!')
-        except tweepy.error.TweepError:
-            sys.exit('OAuth Failed!')
-    if args.hashtag:
-        try:
-            api.search_hashtag(args.hashtag)
-        except tweepy.error.TweepError:
-            sys.exit('OAuth Failed!')
-
-    if not args.timeline and not args.hashtag:
-        print('ERROR! Please read the README.md or use -h argument for help.')
