@@ -63,6 +63,6 @@ REQUIRES PYTHON >= 3.9
 	```
 4. Explore the logs folder accordingly
 
-# Next Steps:
-1. Explore possiblity of automating this process by adding the docker image to AWS ECR and running it on a daily basis. Store the output contents in an S3.
+# WIP:
+1. Automating this process by adding the docker image to AWS ECR and running it on a daily basis. Store the output contents in an S3.
 
