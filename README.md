@@ -4,8 +4,8 @@ store a users' most recent 100 tweets into an NDJSON file. It can also search
 the first 100 tweets with a specified hashtag and display associated distinct hashtags as
 well as the count of each distinct hashtag. This script is useful for identifying and analyzing trends on Twitter through tweets and hashtags.
 # Approach
-This code was designed to be scalable and reusable, such that simple changes to the variables in the code would allow the functions to search a different users tweets, or a different hashtag.
-I took the liberty to provide the user with a docker build environment so that running the code would be less painful! However, if they do not want to use Docker, they can proceed to the boring way of
+This code was designed to be scalable and reusable.
+I took the liberty to provide the user with a docker build environment so that the user could simply build an image and run it regardless of their OS! However, if they do not want to use Docker, they can proceed to the boring way of
 running the code, which is through the Windows/Linux command-line.
 
 # Directory Contents
