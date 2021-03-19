@@ -4,8 +4,8 @@ store a users' most recent 100 tweets into an NDJSON file. It can also search
 the first 100 tweets with a specified hashtag and display associated distinct hashtags as
 well as the count of each distinct hashtag. This script is useful for identifying and analyzing trends on Twitter through tweets and hashtags.
 # Approach
-This code was designed to be scalable and reusable, such that simple changes to the variables in the code would allow the functions to search a different users tweets, or a different hashtag.
-I took the liberty to provide the user with a docker build environment so that running the code would be less painful! However, if they do not want to use Docker, they can proceed to the boring way of
+This code was designed to be scalable and reusable.
+I took the liberty to provide the user with a docker build environment so that the user could simply build an image and run it regardless of their OS! However, if they do not want to use Docker, they can proceed to the boring way of
 running the code, which is through the Windows/Linux command-line.
 
 # Directory Contents
@@ -45,7 +45,7 @@ https://docs.docker.com/get-docker/
 	```
 3. Run the docker image you created using the following command, using whichever arguments are desired:
 	```bash
-	docker run -it --rm -v ${PWD}/logs:/logs <image name> <arg> <arg>
+	docker run -it --rm -v ${PWD}/logs:/code/logs <image name> <arg> <arg>
 	```
 4. Explore the created logs folder accordingly
 
@@ -63,8 +63,6 @@ REQUIRES PYTHON >= 3.9
 	```
 4. Explore the logs folder accordingly
 
-# Next Steps:
-1. Create unit tests
-2. Explore possiblity of automating this process by adding the dockerfile to AWS ECR and running it on a daily basis. Store the output contents in an S3.
-3. Explore possiblity of running functions in parallel since they are independent of eachother
+# WIP:
+1. Automating this process by adding the docker image to AWS ECR and running it on a daily basis. Store the output contents in an S3.
 
