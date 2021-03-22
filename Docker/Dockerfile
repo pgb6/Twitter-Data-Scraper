@@ -7,16 +7,13 @@ WORKDIR /code
 #copy dependencies file to working directory
 COPY requirements.txt .
 
-<<<<<<< HEAD
 #install dependencies
 RUN pip install -r requirements.txt
-=======
 ## Set Your AWS Access credentials
 ARG AWS_ACCESS_KEY=HIDDEN
 ENV AWS_ACCESS_KEY=$AWS_ACCESS_KEY
 ARG AWS_SECRET_ACCESS_KEY=HIDDEN
 ENV AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
->>>>>>> 45a1075 (Update Dockerfile)
 
 #copy content of local src directory to working directory
 COPY src/ .
