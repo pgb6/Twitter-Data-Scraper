@@ -55,7 +55,7 @@ REQUIRES PYTHON >= 3.9
 1. Navigate to the Desktop folder (provided with this README) in the command line
 2. Install the scripts' dependencies like so:
 	```bash
-	pip install argparse==1.1 tweepy==3.10.0 pandas==1.2.1
+	pip install -r requirements.txt
 	```
 3. Run the script:
 	```bash
