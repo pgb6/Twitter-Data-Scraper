@@ -10,17 +10,21 @@ running the code, which is through the Windows/Linux command-line.
 
 # Directory Contents
 ```bash
-├───Desktop
-│   │   hidden.py
-│   │   twitterSearch.py
+├───AWS
+│   │   Dockerfile
+│   │   requirements.txt
 │   │
-│   └───logs
+│   └───src
+│           twitterSearch.py
+│
+├───Desktop
+│       twitterSearch.py
+│
 └───Docker
     │   Dockerfile
     │   requirements.txt
     │
     └───src
-            hidden.py
             twitterSearch.py
 
 ```
