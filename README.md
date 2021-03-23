@@ -35,6 +35,29 @@ The '-H' arg (uppercase!) arg will search a hashtags first 100 tweets and print 
 occurences. This argument also outputs a CSV file to the 'logs' folder.
 
 The '-h' arg is for listing the available args as well as what their purposes are.
+
+If implementing this script for AWS, the '-b' arg must be used to specify which S3 bucket will be used to collect the script output.
+
+## Using AWS (ECS and S3)
+Make sure Docker is installed on your system!
+https://docs.docker.com/get-docker/
+1. Navigate to the AWS folder in the command line
+2. Change the Dockerfile to include your IAM users' keys
+3. Build the docker image with: 
+	```bash
+	docker build -t <desired image name> .
+	```
+3. Create an AWS ECR repository and tag this docker image with the repo URI
+4. Push the image to ECR
+5. Navigate to AWS ECS and create a cluster with >= t2.large instances. Choose one region for the subnet.
+6. Create an S3 bucket for gathering script output. This buckets' region should be the same as the one chosen in the cluster.
+7. Create a task definition with default execution roles and 1024 Task memory and Task CPU each. In the container definitions, create a container with the image URI. For the details, the container must be in Privileged mode and the Command must look like: 
+	```bash 
+	["--timeline",<user name in quotes>,"--hashtag",<hashtag name in quotes>,"--bucket",<S3 bucket name in quotes>]
+	```
+8. Launch a scheduled task in the cluster using the task definition previously created, the S3 bucket should now collect script output for later analysis!
+
+
 ## Using Docker
 Make sure Docker is installed on your system!
 https://docs.docker.com/get-docker/
@@ -55,7 +78,7 @@ REQUIRES PYTHON >= 3.9
 1. Navigate to the Desktop folder (provided with this README) in the command line
 2. Install the scripts' dependencies like so:
 	```bash
-	pip install argparse==1.1 tweepy==3.10.0 pandas==1.2.1
+	pip install -r requirements.txt
 	```
 3. Run the script:
 	```bash
@@ -63,6 +86,5 @@ REQUIRES PYTHON >= 3.9
 	```
 4. Explore the logs folder accordingly
 
-# WIP:
-1. Automating this process by adding the docker image to AWS ECR and running it on a daily basis. Store the output contents in an S3.
+
 
