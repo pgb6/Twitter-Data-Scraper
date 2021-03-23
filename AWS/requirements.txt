@@ -1,0 +1,4 @@
+argparse==1.1
+tweepy==3.10.0
+pandas==1.2.1
+boto3==1.17.34
