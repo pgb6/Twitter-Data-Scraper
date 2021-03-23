@@ -55,8 +55,8 @@ https://docs.docker.com/get-docker/
 	```
 3. Create an AWS ECR repository and tag this docker image with the repo URI
 4. Push the image to ECR
-5. Navigate to AWS ECS and create a cluster with >= t2.large instances. Choose one region for the subnet.
-6. Create an S3 bucket for gathering script output. This buckets' region should be the same as the one chosen in the cluster.
+5. Navigate to AWS ECS and create a cluster with >= t2.large instances. Choose one AZ for the subnet.
+6. Create an S3 bucket for gathering script output. This buckets' AZ should be the same as the one chosen in the cluster.
 7. Create a task definition with default execution roles and 1024 Task memory and Task CPU each. In the container definitions, create a container with the image URI. For the details, the container must be in Privileged mode and the Command must look like: 
 	```bash 
 	["--timeline",<user name in quotes>,"--hashtag",<hashtag name in quotes>,"--bucket",<S3 bucket name in quotes>]
