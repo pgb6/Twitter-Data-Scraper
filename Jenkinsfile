@@ -1,6 +1,6 @@
 pipeline {
   agent {
-    any
+    docker { image 'jenkins/agent' }
   }
   stages {
     stage('everything') {
