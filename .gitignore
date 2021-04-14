@@ -1,4 +1,7 @@
 Docker/src/hidden.py
+Docker/Dockerfile
+AWS/Dockerfile
+AWS/src/hidden.py
 Desktop/hidden.py
 Jenkinsfile
 __pycache__
